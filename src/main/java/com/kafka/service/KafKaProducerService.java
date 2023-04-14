@@ -6,6 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.stereotype.Service;
 
+import com.kafka.model.User;
+
 @Service
 public class KafKaProducerService 
 {
@@ -15,9 +17,9 @@ public class KafKaProducerService
     @Autowired
     private KafkaTemplate<String, String> kafkaTemplate;
  
-    public void sendMessage(String message) 
+    public void sendMessage(String user) 
     {
-        logger.info(String.format("Message sent -> %s", message));
-        this.kafkaTemplate.send("test", message);
+        logger.info(String.format("Message sent -> %s", user.toString()));
+        this.kafkaTemplate.send("test", user);
     }
 }

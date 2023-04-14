@@ -1,11 +1,16 @@
 package com.kafka.controller;
 
+
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.kafka.model.User;
 import com.kafka.service.KafKaProducerService;
 
 @RestController
@@ -21,8 +26,13 @@ public class KafkaProducerController
 	}
 
 	@PostMapping(value = "/publish")
-	public void sendMessageToKafkaTopic(@RequestParam("message") String message)
+	public void sendMessageToKafkaTopic(@RequestBody User message) throws JsonProcessingException
 	{
-		this.producerService.sendMessage(message);
+		
+		
+		ObjectMapper objectMapper = new ObjectMapper();
+		String user = objectMapper.writeValueAsString(message);
+		System.err.println(user);
+		this.producerService.sendMessage(user);
 	}
 }
