@@ -1,7 +1,7 @@
 // https://howtodoinjava.com/kafka/spring-boot-with-kafka/
 // bin\windows\zookeeper-server-start.bat config\zookeeper.properties
 // bin\windows\kafka-server-start.bat .\config\server.properties
-// kafka-console-consumer.bat --bootstrap-server 0:9092 --topic test --from-beginning
+// bin\windows\kafka-console-consumer.bat --bootstrap-server 0:9092 --topic test --from-beginning
 //
 
 package com.kafka;
